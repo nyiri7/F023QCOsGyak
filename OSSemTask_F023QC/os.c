@@ -19,16 +19,20 @@ int main()
     // Le kell kérni az adott process ID-ját, mert még nem tudjuk
     int szpid = getpid();
 
-    if (childPid == 0)  // Ez az ág csak a gyerek processnél fut le.   
+    if (cpid == 0)  // Ez az ág csak a gyerek processnél fut le.   
     {
-        execl("masikp.c",szpid,cpid,NULL);
-        printf("Error: execl nem ter vissza.");
-        exit(0);
+        char gyerpid[40];
+        char szulpid[20];
+        sprintf(szulpid,"%d",szpid);
+        sprintf(gyerpid,"%d",getpid());
+        execl("./masikp","masikp",szulpid,gyerpid,(char *)NULL);
+        printf("Error execl nem ter vissza");
 
     }
     else  // Ez az ág csak a szülő processnél fut le.           
     {      
-        printf("Szulo pidje: %d Gyerek pidje: %d", szpid,cpid);
+        printf("A szulo vagyok \n");
+        printf("Szulo pidje: %d Gyerek pidje: %d \n", szpid,cpid);
 
         
 
