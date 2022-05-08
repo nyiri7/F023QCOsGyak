@@ -21,9 +21,11 @@ int main()
 
     if (cpid == 0)  // Ez az ág csak a gyerek processnél fut le.   
     {
-        char gyerpid[40];
-        char szulpid[20];
-        sprintf(szulpid,"%d",szpid);
+        int childpid = cpid;
+        char gyerpid[6];
+        char szulpid[6];
+        sprintf(szulpid,"%d",getppid());
+        printf("%d",childpid);
         sprintf(gyerpid,"%d",getpid());
         execl("./masikp","masikp",szulpid,gyerpid,(char *)NULL);
         printf("Error execl nem ter vissza");
